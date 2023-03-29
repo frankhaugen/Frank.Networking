@@ -5,7 +5,7 @@ namespace Frank.Networking;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddTcpServer(this IServiceCollection services, SocketListenerOptions options)
+    public static IServiceCollection AddSocketListener(this IServiceCollection services, SocketListenerOptions options)
     {
         services.AddSingleton<IOptions<SocketListenerOptions>>(Options.Create(options));
         services.AddSingleton<ISocketDataReceivedHandler, SocketDataReceivedHandler>();
@@ -13,4 +13,10 @@ public static class ServiceCollectionExtensions
         return services;
     }
     
+    public static IServiceCollection AddSocketSender(this IServiceCollection services, SocketSenderOptions options)
+    {
+        services.AddTransient<ISocketSender, SocketSender>();
+        services.AddSingleton<IOptions<SocketSenderOptions>>(Options.Create(options));
+        return services;
+    }
 }
