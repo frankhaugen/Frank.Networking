@@ -7,7 +7,7 @@ namespace Frank.IRC.CommandHandlers;
 
 public interface ICommandHandler
 {
-    public CommandName Command { get; }
+    public IrcCommandName Command { get; }
     
     public IEnumerable<IReply> Handle(IrcMessage message);
 }

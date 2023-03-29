@@ -4,7 +4,7 @@ namespace Frank.IRC;
 
 public interface ICommand
 {
-    public CommandName Name { get; }
+    public IrcCommandName Name { get; }
     public string Description { get; }
     public string Syntax { get; }
     

@@ -1,6 +1,6 @@
 ﻿namespace Frank.IRC.Commands.Base;
 
-public enum CommandName
+public enum IrcCommandName
 {
     ADMIN,
     AWAY,
