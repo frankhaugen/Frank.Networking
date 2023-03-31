@@ -1,10 +1,12 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class PongCommand : Command
+public class PongCommand : IrcCommand
 {
-    public PongCommand() : base(CommandConstants.Pong.Command, CommandConstants.Pong.Helptext, CommandConstants.Pong.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.Pong;
+
+    public PongCommand(string message) : base(message)
     {
     }
 }

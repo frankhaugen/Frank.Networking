@@ -1,10 +1,12 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class QuitCommand : Command
+public class QuitCommand : IrcCommand
 {
-    public QuitCommand() : base(CommandConstants.Quit.Command, CommandConstants.Quit.Helptext, CommandConstants.Quit.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.Quit;
+
+    public QuitCommand(string message) : base(message)
     {
     }
 }

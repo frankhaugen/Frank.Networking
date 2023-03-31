@@ -1,10 +1,13 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class UserCommand : Command
+public class UserCommand : IrcCommand
 {
-    public UserCommand() : base(CommandConstants.User.Command, CommandConstants.User.Helptext, CommandConstants.User.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.User;
+
+    public UserCommand(string username, string hostname, string servername, string realname) 
+        : base(username, hostname, servername, realname)
     {
     }
 }

@@ -1,10 +1,12 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class JoinCommand : Command
+public class JoinCommand : IrcCommand
 {
-    public JoinCommand() : base(CommandConstants.Join.Command, CommandConstants.Join.Helptext, CommandConstants.Join.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.Join;
+
+    public JoinCommand(string channel) : base(channel)
     {
     }
 }

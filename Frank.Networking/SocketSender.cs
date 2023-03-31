@@ -8,21 +8,24 @@ namespace Frank.Networking;
 public class SocketSender : ISocketSender
 {
     private readonly ILogger<SocketSender> _logger;
-    private readonly IOptions<SocketSenderOptions> _options;
+    private readonly IOptions<SocketConnectionOptions> _options;
 
-    public SocketSender(ILogger<SocketSender> logger, IOptions<SocketSenderOptions> options)
+    public SocketSender(ILogger<SocketSender> logger, IOptions<SocketConnectionOptions> options)
     {
         _logger = logger;
         _options = options;
     }
 
-    public async Task SendAsync(byte[] data)
+    public async Task SendAsync(byte[] data) => await SendAsyncInternal(data, _options.Value);
+
+    public async Task SendAsync(byte[] data, SocketConnectionOptions options) => await SendAsyncInternal(data, options);
+
+    private async Task SendAsyncInternal(byte[] data, SocketConnectionOptions options)
     {
         try
         {
-            using var socket = new Socket(_options.Value.IPAddress.AddressFamily, _options.Value.SocketType, _options.Value.ProtocolType);
-            await socket.ConnectAsync(_options.Value.ToIPEndpoint());
-            await socket.SendAsync(data);
+            var socketConnection = new SocketConnection(options);
+            await socketConnection.SendAsync(data);
         }
         catch (Exception ex)
         {

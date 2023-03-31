@@ -1,10 +1,12 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class PartCommand : Command
+public class PartCommand : IrcCommand
 {
-    public PartCommand() : base(CommandConstants.Part.Command, CommandConstants.Part.Helptext, CommandConstants.Part.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.Part;
+
+    public PartCommand(string channel) : base(channel)
     {
     }
 }

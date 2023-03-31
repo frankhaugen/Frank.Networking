@@ -1,10 +1,12 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class NickCommand : Command
+public class NickCommand : IrcCommand
 {
-    public NickCommand() : base(CommandConstants.Nick.Command, CommandConstants.Nick.Helptext, CommandConstants.Nick.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.Nick;
+
+    public NickCommand(string nickname) : base(nickname)
     {
     }
 }

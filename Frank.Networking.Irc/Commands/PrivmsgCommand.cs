@@ -1,10 +1,12 @@
 ﻿using Frank.IRC.Commands.Base;
 
-namespace Frank.IRC.Commands;
+namespace Frank.Networking.Irc;
 
-public class PrivmsgCommand : Command
+public class PrivmsgCommand : IrcCommand
 {
-    public PrivmsgCommand() : base(CommandConstants.PrivateMessage.Command, CommandConstants.PrivateMessage.Helptext, CommandConstants.PrivateMessage.Syntax)
+    public override IrcCommandName CommandName => IrcCommandName.Privmsg;
+
+    public PrivmsgCommand(string target, string message) : base(target, message)
     {
     }
 }

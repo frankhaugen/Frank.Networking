@@ -14,24 +14,10 @@ public class IrcMessageRaw : IParsable<IrcMessageRaw>
     public override string ToString()
     {
         var messageBuilder = new System.Text.StringBuilder();
-
-        if (!string.IsNullOrEmpty(Prefix))
-        {
-            messageBuilder.Append($":{Prefix} ");
-        }
-
+        if (!string.IsNullOrEmpty(Prefix)) messageBuilder.Append($":{Prefix} ");
         messageBuilder.Append(Command);
-
-        foreach (var parameter in Parameters)
-        {
-            messageBuilder.Append($" {parameter}");
-        }
-
-        if (!string.IsNullOrEmpty(Trailing))
-        {
-            messageBuilder.Append($" :{Trailing}");
-        }
-
+        foreach (var parameter in Parameters) messageBuilder.Append($" {parameter}");
+        if (!string.IsNullOrEmpty(Trailing)) messageBuilder.Append($" :{Trailing}");
         return messageBuilder.ToString();
     }
 
@@ -86,6 +72,8 @@ public class IrcMessageRaw : IParsable<IrcMessageRaw>
         return result;
     }
 
+    public static bool TryParse(string? s, out IrcMessageRaw result) => TryParse(s, null, out result);
+    
     public static bool TryParse(string? s, IFormatProvider? provider, out IrcMessageRaw result)
     {
         try

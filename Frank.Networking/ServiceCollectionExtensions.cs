@@ -13,10 +13,10 @@ public static class ServiceCollectionExtensions
         return services;
     }
     
-    public static IServiceCollection AddSocketSender(this IServiceCollection services, SocketSenderOptions options)
+    public static IServiceCollection AddSocketSender(this IServiceCollection services, SocketConnectionOptions options)
     {
         services.AddTransient<ISocketSender, SocketSender>();
-        services.AddSingleton<IOptions<SocketSenderOptions>>(Options.Create(options));
+        services.AddSingleton<IOptions<SocketConnectionOptions>>(Options.Create(options));
         return services;
     }
 }
