@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System.Net;
+using System.Net.Sockets;
 
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -44,8 +45,9 @@ public class SocketListener : BackgroundService
                 if (bytesRead > 0)
                 {
                     using var stream = new MemoryStream();
-                    await stream.ReadAsync(buffer, 0, bytesRead);
-                    _dataReceivedHandler.OnDataReceived(this, new SocketDataReceivedEventArgs(client.RemoteEndPoint, stream.ToArray()));
+                    await stream.ReadAsync(buffer.AsMemory(0, bytesRead));
+                    var remoteEndPoint = client.RemoteEndPoint ?? new IPEndPoint(IPAddress.None, 0);
+                    _dataReceivedHandler.OnDataReceived(this, new SocketDataReceivedEventArgs(remoteEndPoint, stream.ToArray()));
                 }
             }
         }

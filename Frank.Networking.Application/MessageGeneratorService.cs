@@ -1,5 +1,7 @@
 ﻿using System.Text;
 
+using Frank.Networking.Irc;
+
 namespace Frank.Networking.Application;
 
 public class MessageGeneratorService : BackgroundService
@@ -16,7 +18,8 @@ public class MessageGeneratorService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             await Task.Delay(TimeSpan.FromSeconds(3));
-            var data = Encoding.UTF8.GetBytes("My message");
+            var ircMessage = new JoinCommand("#test");
+            var data = Encoding.UTF8.GetBytes(ircMessage.ToString());
             await _client.SendAsync(data);
         }
     }

@@ -1,7 +1,4 @@
-﻿using Frank.IRC.Commands;
-using Frank.IRC.Commands.Base;
-using Frank.IRC.Models;
-using Frank.IRC.Replies;
+﻿using Frank.IRC.Models;
 
 using Microsoft.Extensions.Logging;
 

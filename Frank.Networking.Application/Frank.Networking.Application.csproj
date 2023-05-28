@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Frank.Networking.Irc\Frank.Networking.Irc.csproj" />
       <ProjectReference Include="..\Frank.Networking\Frank.Networking.csproj" />
     </ItemGroup>
 </Project>

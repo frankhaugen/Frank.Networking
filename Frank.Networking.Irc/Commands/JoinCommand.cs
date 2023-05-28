@@ -9,4 +9,6 @@ public class JoinCommand : IrcCommand
     public JoinCommand(string channel) : base(channel)
     {
     }
+    
+    public string Channel => Parameters[0];
 }

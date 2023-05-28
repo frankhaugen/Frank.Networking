@@ -1,17 +1,18 @@
-﻿using System.Text;
-
-using Frank.IRC.Models;
-using Frank.Networking.Irc.Helpers;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Frank.Networking.Irc.Server;
 
-public class IrcServer : ISocketConnectionHandler
+public class IrcServer : IIrcServer
 {
-    public void OnDataReceived(object sender, SocketConnectionDataReceivedEventArgs e)
+    private readonly ILogger<IrcServer> _logger;
+
+    public IrcServer(ILogger<IrcServer> logger)
     {
-        if (EncodingHelper.TryGetString(e.Data, out var rawString) && IrcMessageRaw.TryParse(rawString, out var message))
-        {
-            
-        }
+        _logger = logger;
+    }
+
+    public async Task ReceiveCommandAsync(IIrcCommand command)
+    {
+        _logger.LogInformation("Received command {CommandName}", command.CommandName);
     }
 }

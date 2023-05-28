@@ -9,4 +9,6 @@ public class NickCommand : IrcCommand
     public NickCommand(string nickname) : base(nickname)
     {
     }
+    
+    public string Nickname => Parameters[0];
 }

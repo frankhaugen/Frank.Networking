@@ -10,4 +10,9 @@ public class UserCommand : IrcCommand
         : base(username, hostname, servername, realname)
     {
     }
+    
+    public string Username => Parameters[0];
+    public string Hostname => Parameters[1];
+    public string Servername => Parameters[2];
+    public string Realname => Parameters[3];
 }

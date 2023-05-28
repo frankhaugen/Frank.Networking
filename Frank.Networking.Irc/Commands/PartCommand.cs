@@ -9,4 +9,6 @@ public class PartCommand : IrcCommand
     public PartCommand(string channel) : base(channel)
     {
     }
+    
+    public string Channel => Parameters[0];
 }

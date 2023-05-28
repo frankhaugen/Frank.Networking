@@ -9,4 +9,6 @@ public class QuitCommand : IrcCommand
     public QuitCommand(string message) : base(message)
     {
     }
+    
+    public string Message => Parameters[0];
 }

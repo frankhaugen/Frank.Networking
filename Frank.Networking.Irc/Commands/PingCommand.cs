@@ -9,4 +9,6 @@ public class PingCommand : IrcCommand
     public PingCommand(string message) : base(message)
     {
     }
+    
+    public string Message => Parameters[0];
 }

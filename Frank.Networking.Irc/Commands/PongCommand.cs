@@ -9,4 +9,6 @@ public class PongCommand : IrcCommand
     public PongCommand(string message) : base(message)
     {
     }
+    
+    public string Message => Parameters[0];
 }
