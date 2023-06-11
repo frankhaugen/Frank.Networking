@@ -22,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Frank.Networking.Irc\Frank.Networking.Irc.csproj" />
+    <ProjectReference Include="..\Frank.Networking.Legacy\Frank.Networking.Legacy.csproj" />
     <ProjectReference Include="..\Frank.Networking\Frank.Networking.csproj" />
   </ItemGroup>
 

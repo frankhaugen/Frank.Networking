@@ -9,4 +9,9 @@
     <ItemGroup>
       <ProjectReference Include="..\Frank.Networking\Frank.Networking.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Client\" />
+      <Folder Include="Server\" />
+    </ItemGroup>
 </Project>

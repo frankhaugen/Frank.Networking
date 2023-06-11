@@ -1,17 +1,30 @@
 using System.Net;
-using System.Net.Sockets;
+using System.Text.Json;
 
-using Frank.Networking;
 using Frank.Networking.Application;
+using Frank.Networking.Common;
+
+using Microsoft.Extensions.Logging.Console;
 
 IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureLogging((context, builder) =>
+    {
+        builder.ClearProviders();
+        builder.AddConsole();
+    })
     .ConfigureServices(services =>
     {
-        services.AddSocketListener(new SocketListenerOptions() { IPAddress = IPAddress.Any, Port = 12345, ProtocolType = ProtocolType.Tcp, SocketType = SocketType.Stream, Backlog = 100 });
+        services.AddNetworkServer<NetworkDataReceivedHandler>(config =>
+        {
+        });
         
-        services.AddSocketSender(new SocketConnectionOptions() {IPAddress = IPAddress.Loopback, Port = 12345, ProtocolType = ProtocolType.Tcp, SocketType = SocketType.Stream,});
-        services.AddHostedService<MessageGeneratorService>();
+        services.AddNetworkClient(config =>
+        {
+            config.IPAddress = IPAddress.Loopback;
+        });
+        
+        services.AddHostedService<Worker>();
     })
     .Build();
-
+ 
 host.Run();
