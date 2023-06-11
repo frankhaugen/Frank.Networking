@@ -1,5 +1,5 @@
-﻿using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
+using System.Text;
 
 using Frank.Networking.Common;
 
@@ -54,7 +54,14 @@ public class NetworkServer : BackgroundService
                     var read = await connection.ReceiveAsync(buffer, SocketFlags.None);
                     if (read == 0)
                         break;
-                    await _serverDataReceivedHandler.OnDataReceivedAsync(buffer.AsMemory(), stoppingToken);
+                    var data = buffer.AsMemory(0, read);
+                    var response = await _serverDataReceivedHandler.OnDataReceivedAsync(data, stoppingToken);
+                    
+                    if (!response.IsEmpty && _options.Value.SendResponse)
+                    {
+                        _logger.LogInformation("Sending response: {Response}", Encoding.UTF8.GetString(response.Span));
+                        await connection.SendAsync(response, SocketFlags.None, stoppingToken);
+                    }
                 }
             }
             finally

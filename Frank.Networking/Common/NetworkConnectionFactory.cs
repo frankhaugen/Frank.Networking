@@ -28,13 +28,6 @@ public static class NetworkConnectionFactory
         return socket;
     }
     
-    public static async Task<Socket> CreateConnectedSocketAsync(NetworkConfiguration configuration, EndPoint remoteEndPoint, CancellationToken cancellationToken)
-    {
-        var socket = CreateSocket(configuration);
-        await socket.ConnectAsync(remoteEndPoint, cancellationToken);
-        return socket;
-    }
-    
     public static async Task<NetworkStream> CreateConnectedNetworkStreamAsync(NetworkConfiguration configuration, CancellationToken cancellationToken)
     {
         var socket = await CreateConnectedSocketAsync(configuration, cancellationToken);

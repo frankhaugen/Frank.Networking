@@ -19,7 +19,7 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+            // _logger.LogInformation("Sending message at: {Time}", DateTimeOffset.Now);
             await Task.Delay(1000, stoppingToken);
             
             await _networkClient.SendAsync("Hello, World!"u8.ToArray(), stoppingToken);
