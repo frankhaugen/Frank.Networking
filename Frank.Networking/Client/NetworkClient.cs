@@ -13,7 +13,7 @@ public class NetworkClient : INetworkClient
     private readonly ILogger<NetworkClient> _logger;
     private readonly IOptions<NetworkClientConfiguration> _options;
     
-    private NetworkStream? _networkStream;
+    // private NetworkStream? _networkStream;
 
     public NetworkClient(IOptions<NetworkClientConfiguration> options, ILogger<NetworkClient> logger)
     {
@@ -23,13 +23,21 @@ public class NetworkClient : INetworkClient
 
     public async Task SendAsync(ReadOnlyMemory<Byte> data, CancellationToken cancellationToken)
     {
+        await using var networkStream = await NetworkConnectionFactory.CreateConnectedNetworkStreamAsync(_options.Value, cancellationToken);
+        
         try
         {
-            _networkStream ??= await NetworkConnectionFactory.CreateConnectedNetworkStreamAsync(_options.Value, cancellationToken);
-            await _networkStream!.WriteAsync(data, cancellationToken);
-            
+            await networkStream!.WriteAsync(data, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error sending data: {ErrorMessage}", e.Message);
+        }
+
+        try
+        {
             var buffer = new byte[1024];
-            var read = await _networkStream.ReadAsync(buffer, cancellationToken);
+            var read = await networkStream.ReadAsync(buffer, cancellationToken);
 
             if (read > 0)
             {
@@ -38,7 +46,7 @@ public class NetworkClient : INetworkClient
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Error sending data");
+            _logger.LogError(e, "Error receiving response: {ErrorMessage}", e.Message);
         }
     }
 }

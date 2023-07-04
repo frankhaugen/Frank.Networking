@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frank.Networking.Irc", "Frank.Networking.Irc\Frank.Networking.Irc.csproj", "{C8635D60-CD74-4B8A-91D0-5EEAACF41987}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,5 +41,9 @@ Global
 		{3436AC74-97EE-462E-9DA3-E8CE4F307EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3436AC74-97EE-462E-9DA3-E8CE4F307EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3436AC74-97EE-462E-9DA3-E8CE4F307EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8635D60-CD74-4B8A-91D0-5EEAACF41987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8635D60-CD74-4B8A-91D0-5EEAACF41987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8635D60-CD74-4B8A-91D0-5EEAACF41987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8635D60-CD74-4B8A-91D0-5EEAACF41987}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
