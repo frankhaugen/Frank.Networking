@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/SolutionFiles/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Frank.Networking.Irc/Frank.Networking.Irc.csproj" />
+  <Project Path="Frank.Networking.Sample/Frank.Networking.Sample.csproj" />
+  <Project Path="Frank.Networking.Tests/Frank.Networking.Tests.csproj" />
+  <Project Path="Frank.Networking/Frank.Networking.csproj" />
+</Solution>
